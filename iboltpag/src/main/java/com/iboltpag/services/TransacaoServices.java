@@ -2,6 +2,7 @@ package com.iboltpag.services;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.Normalizer;
 
 import com.iboltpag.models.Empresa;
 import com.iboltpag.models.RetornoWS;
@@ -10,6 +11,23 @@ import com.iboltpag.models.Transacao;
 public class TransacaoServices extends ControlServices {
 
 	public RetornoWS<Transacao> insertTransaco(Transacao t) throws SQLException {
+		String nome = Normalizer.normalize(t.getNomePagador(), Normalizer.Form.NFD);
+		String logradouro = Normalizer.normalize(t.getLogradouroPagador(), Normalizer.Form.NFD);
+		String complemento = Normalizer.normalize(t.getComplementoPagador(), Normalizer.Form.NFD);
+		String bairro = Normalizer.normalize(t.getBairroPagador(), Normalizer.Form.NFD);
+		String cidade = Normalizer.normalize(t.getCidadePagador(), Normalizer.Form.NFD);
+		nome = nome.replaceAll("[^\\p{ASCII}]", "").toUpperCase();
+		logradouro = logradouro.replaceAll("[^\\p{ASCII}]", "").toUpperCase();
+		complemento = complemento.replaceAll("[^\\p{ASCII}]", "").toUpperCase();
+		bairro = bairro.replaceAll("[^\\p{ASCII}]", "").toUpperCase();
+		cidade = cidade.replaceAll("[^\\p{ASCII}]", "").toUpperCase();
+		
+		t.setNomePagador(nome);
+		t.setLogradouroPagador(logradouro);
+		t.setComplementoPagador(complemento);
+		t.setBairroPagador(bairro);
+		t.setCidadePagador(cidade);
+		
 		RetornoWS<Transacao> retorno = new RetornoWS<Transacao>();
 	
 		String sql = "INSERT INTO transacao (tipo_cobranca, fk_pedido_pagamento, fk_pedido, fk_forma_pagamento_operadora_empresa, "

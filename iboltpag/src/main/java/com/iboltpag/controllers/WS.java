@@ -138,6 +138,7 @@ public class WS {
 						.allow("OPTIONS").build();
 			}
 			
+			
 			RetornoWS<Empresa> retornoAutenticacao = new RetornoWS<Empresa>();
 			try {
 				retornoAutenticacao = es.autenticarAcesso(usr, pwd);
@@ -205,8 +206,8 @@ public class WS {
 		        	html += inputLine;
 		        }
 				in.close();
-				System.out.println("http://192.168.100.11:8080/sii/iboltpag/controllers/boletoController.php?idT="+t.getCodigoTransacao()+"&usr="+usr+"&pwd="+pwd); 
-				System.out.println(html);
+				//System.out.println("http://192.168.100.11:8080/sii/iboltpag/controllers/boletoController.php?idT="+t.getCodigoTransacao()+"&usr="+usr+"&pwd="+pwd); 
+				//System.out.println(html);
 				
 				
 				return Response.ok(html)
@@ -229,29 +230,6 @@ public class WS {
 
 			
 		}else{
-			System.out.println(origem);
-			System.out.println(idPedido);
-//			System.out.println(idPagamento);
-//			System.out.println(formaPagamento);
-//			System.out.println(operador);
-//			System.out.println(valorTransacao);
-//			System.out.println(dataDocumento);
-//			System.out.println(dataVencimentoDocumento);
-//			System.out.println(numParcelas);
-//			System.out.println(valorParcela);
-//			System.out.println(nomePagador);
-//			System.out.println(tipoInscricaoPagador);
-//			System.out.println(inscricaoPagador);
-//			System.out.println(cepPagador);
-//			System.out.println(logradouro);
-//			System.out.println(complementoPagador);
-//			System.out.println(numeroPagador);
-//			System.out.println(bairroPagador);
-//			System.out.println(cidadePagador);
-//			System.out.println(ufPagador);
-			System.out.println(pwd);
-			System.out.println(usr);
-			System.out.println("Erro");
 			return Response.ok("error")
 					.header("Access-Control-Allow-Origin", "*")
 					.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT")
